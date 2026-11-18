@@ -1,0 +1,13 @@
+Month,Department,Category,Budget,Actual
+2026-04-01,Sales,Salaries,40292,42347
+2026-04-01,Sales,Travel,6700,6876
+2026-04-01,Sales,Software,5002,4521
+2026-04-01,Sales,Advertising,14554,13667
+2026-04-01,Marketing,Salaries,39790,42225
+2026-04-01,Marketing,Travel,5281,4872
+2026-04-01,Marketing,Software,3328,3754
+2026-04-01,Marketing,Advertising,23178,20129
+2026-04-01,Operations,Salaries,46366,39902
+2026-04-01,Operations,Travel,5292,5199
+2026-04-01,Operations,Software,7271,6687
+2026-04-01,Operations,Advertising,4862,5043
