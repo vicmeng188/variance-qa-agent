@@ -1,0 +1,96 @@
+﻿case,run,question,passed,failed_checks,extra_numbers,tool_calls,answer
+6,1,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","For Q2–Q3 FY26 (October 2025 to March 2026), the tool only had data for January to March 2026. October to December 2025 has no data, so these figures cover Q3 only.
+
+| Department | Variance | Variance % |
+|---|---|---|
+| Marketing | +9,354 | +4.50% |
+| Operations | +2,270 | +1.61% |
+| Sales | -4,211 | -1.60% |
+
+Data issues in the source:
+- Operations has no Salaries row for 2026-02.
+- Operations has no Travel row for 2026-03.
+- Sales has two Salaries rows for 2026-02, and the tool added them together.
+- Marketing has two Travel rows for 2026-03, and the tool added them together."
+6,2,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","For Q2–Q3 FY26 (October 2025 to March 2026), the data only covers January to March 2026. There is no data for October, November or December 2025, so Q2 is missing. The variances for the available period are:
+- **Marketing:** +9,354 (+4.50%), with actual 217,104 against a budget of 207,750.
+- **Operations:** +2,270 (+1.61%), with actual 143,566 against a budget of 141,296.
+- **Sales:** -4,211 (-1.60%), with actual 258,174 against a budget of 262,385.
+
+There are also source data problems:
+- Operations has no Salaries row for February 2026.
+- Operations has no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, which were added together.
+- Marketing has two Travel rows for March 2026, which were added together."
+6,3,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Q2 and Q3 FY26 cover October 2025 to March 2026. The data only starts in January 2026, so these figures cover Q3 only (January to March 2026).
+
+- **Marketing:** overspent by +9,354 (+4.50%). Budget was 207,750 and actual was 217,104.
+- **Operations:** overspent by +2,270 (+1.61%). Budget was 141,296 and actual was 143,566.
+- **Sales:** underspent by -4,211 (-1.60%). Budget was 262,385 and actual was 258,174.
+
+The source data has gaps and duplicates:
+- There is no data for October, November or December 2025.
+- Operations has no Salaries row for February 2026 and no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, and Marketing has two Travel rows for March 2026. The tool added each pair together."
+6,4,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Q2 and Q3 FY26 cover October 2025 to March 2026, but the data only covers January to March 2026. That means Q2 (October to December) has no data, so these figures are effectively Q3 only. Variances for that period:
+- **Marketing:** +9,354 over budget (+4.50%).
+- **Operations:** +2,270 over budget (+1.61%).
+- **Sales:** -4,211 under budget (-1.60%).
+
+The source data also has gaps and duplicates, so treat these figures with caution:
+- Operations has no Salaries row for February 2026.
+- Operations has no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, which were added together.
+- Marketing has two Travel rows for March 2026, which were added together."
+6,5,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Q2 and Q3 FY26 cover October 2025 to March 2026. The data only covers January to March 2026, so these figures leave out all of Q2 (October to December 2025).
+
+| Department | Variance | Variance % |
+|---|---|---|
+| Marketing | +9,354 | +4.50% |
+| Operations | +2,270 | +1.61% |
+| Sales | -4,211 | -1.60% |
+
+Marketing and Operations are over budget, and Sales is under budget.
+
+The source data also has these gaps and duplicates:
+- **Missing rows:** Operations has no Salaries row for February 2026 and no Travel row for March 2026.
+- **Duplicate rows:** Sales Salaries has two rows for February 2026, and Marketing Travel has two rows for March 2026. The tool added each pair together."
+6,6,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Q2 and Q3 FY26 cover October 2025 to March 2026. The data only covers January to March 2026 (Q3), so these figures leave out all of Q2.
+
+| Department | Variance | Variance % |
+|---|---|---|
+| Marketing | +9,354 | +4.50% |
+| Operations | +2,270 | +1.61% |
+| Sales | -4,211 | -1.60% |
+
+There is no data for October, November or December 2025. Operations has no Salaries row for February 2026 and no Travel row for March 2026. Sales has two Salaries rows for February 2026, and Marketing has two Travel rows for March 2026. The tool added each pair together, so check those rows in the source data."
+6,7,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Across Q2 and Q3 FY26 (October 2025 to March 2026), the tool found data only for January to March 2026. Q2 (October to December 2025) has no data, so these figures are effectively Q3 only.
+
+- **Marketing:** +9,354 over budget (+4.50%). Budget was 207,750 and actual was 217,104.
+- **Operations:** +2,270 over budget (+1.61%). Budget was 141,296 and actual was 143,566.
+- **Sales:** -4,211 under budget (-1.60%). Budget was 262,385 and actual was 258,174.
+
+The source data has gaps and duplicates:
+- Operations has no Salaries row for February 2026.
+- Operations has no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, and the tool added them together.
+- Marketing has two Travel rows for March 2026, and the tool added them together.
+
+These issues may affect the accuracy of the variances."
+6,8,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Q2 and Q3 FY26 cover October 2025 to March 2026, but the data only covers January to March 2026. The Q2 months (October to December 2025) have no data, so these totals are effectively Q3 only. The variances are:
+- **Marketing:** +9,354 (+4.50%), with a budget of 207,750 and actual of 217,104.
+- **Operations:** +2,270 (+1.61%), with a budget of 141,296 and actual of 143,566.
+- **Sales:** -4,211 (-1.60%), with a budget of 262,385 and actual of 258,174.
+
+There are also data issues:
+- Operations has no Salaries row for February 2026 and no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, which were added together.
+- Marketing has two Travel rows for March 2026, which were added together."
+6,9,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","For Q2–Q3 FY26 (October 2025 to March 2026), the data only covers January to March 2026. There is no data for October, November or December 2025, so Q2 is missing entirely. Over the months with data:
+- Marketing is over budget by +9,354 (+4.50%).
+- Operations is over budget by +2,270 (+1.61%).
+- Sales is under budget by -4,211 (-1.60%).
+
+There are also data problems in the source rows:
+- Operations has no Salaries row for 2026-02 and no Travel row for 2026-03.
+- Sales has two Salaries rows for 2026-02, and Marketing has two Travel rows for 2026-03. The tool added each pair together."

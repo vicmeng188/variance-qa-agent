@@ -11,23 +11,25 @@ MAX_STEPS = 6
 SYSTEM = """You answer a finance manager's questions about budget vs actual spending.
 Use the query_variance tool for every figure you give. Never calculate, add, subtract, round or estimate figures yourself. If you need a total or a comparison, query it.
 Quote figures exactly as the tool returns them.
-If the tool result contains a Note about missing or duplicate data, tell the manager.
+If the tool result contains a Note about months with no data or missing or duplicate rows, tell the manager.
 Answer in plain English, in no more than four sentences."""
 
 TOOLS = [
     {
         "name": "query_variance",
-        "description": "Returns Budget, Actual, Variance and Variance % from the company's cost data (January to June 2026). All figures are calculated in code. Filter by department and/or category, choose a month range, and choose how to group the result. Rows are sorted from largest overspend to largest underspend, except when grouped by month. Notes at the end flag missing or duplicate source rows.",
+        "description": "Returns Budget, Actual, Variance and Variance % from the company's cost data. All figures are calculated in code. Give the period either as months (month_from, month_to) or as financial-year quarters (quarter_from, quarter_to), not both. The financial year runs July to June. For any question about financial-year quarters, pass the quarters exactly as asked, for example Q2 FY26, and let the tool convert them; do not convert quarters to months yourself. Filter by department and/or category and choose how to group the result. Rows are sorted from largest overspend to largest underspend, except when grouped by month. Notes at the end flag months with no data and missing or duplicate source rows.",
         "input_schema": {
             "type": "object",
             "properties": {
-                "month_from": {"type": "string", "description": "First month, written as YYYY-MM, for example 2026-03"},
-                "month_to": {"type": "string", "description": "Last month, written as YYYY-MM"},
                 "group_by": {
                     "type": "string",
                     "enum": ["department", "category", "month", "none"],
                     "description": "How to group the rows. Use none for a single total.",
                 },
+                "month_from": {"type": "string", "description": "First month, written as YYYY-MM, for example 2026-03"},
+                "month_to": {"type": "string", "description": "Last month, written as YYYY-MM"},
+                "quarter_from": {"type": "string", "description": "First financial-year quarter, written like Q2 FY26"},
+                "quarter_to": {"type": "string", "description": "Last financial-year quarter, written like Q3 FY26"},
                 "department": {
                     "type": "string",
                     "enum": ["Marketing", "Operations", "Sales"],
@@ -39,7 +41,7 @@ TOOLS = [
                     "description": "Optional. Leave out to include all categories.",
                 },
             },
-            "required": ["month_from", "month_to", "group_by"],
+            "required": ["group_by"],
         },
     }
 ]
@@ -47,6 +49,7 @@ TOOLS = [
 
 def numbers_in(text):
     text = re.sub(r"\b(?:19|20)\d{2}\b", " ", text)
+    text = re.sub(r"\b(?:Q[1-4]|FY\d{2}|H[12])\b", " ", text)
     result = set()
     for n in re.findall(r"\d[\d,]*(?:\.\d+)?", text):
         result.add(float(n.replace(",", "")))

@@ -1,55 +1,100 @@
 ﻿case,run,question,passed,failed_checks,extra_numbers,tool_calls,answer
-1,1,How did Sales track against budget in Q3 FY26?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-03', 'group_by': 'none', 'department': 'Sales'}]","I've assumed FY26 starts in July, so Q3 is January to March 2026. The data only runs January to June 2026, so a calendar-year Q3 isn't available. On that basis, Sales had a budget of 262,385 and an actual of 258,174. That is a variance of -4,211 (-1.60%), meaning Sales came in under budget. The tool also flagged that Sales / Salaries has 2 rows for February 2026, which it added together. That could overstate the actuals if one row is a duplicate, so please check the source data."
-1,2,How did Sales track against budget in Q3 FY26?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-03', 'department': 'Sales', 'group_by': 'none'}]","Your data only covers January to June 2026, so I assumed Q3 FY26 means January to March 2026. That is only true if your fiscal year starts in July. Please tell me if you define it differently.
+1,1,How did Sales track against budget in Q3 FY26?,True,[],[],"[{'group_by': 'none', 'department': 'Sales', 'quarter_from': 'Q3 FY26', 'quarter_to': 'Q3 FY26'}]","Sales spent less than its budget in Q3 FY26 (January to March 2026). Actual spend was 258,174 against a budget of 262,385. That is a variance of -4,211, or -1.60%.
 
-On that basis, Sales spent 258,174 against a budget of 262,385. That is a variance of -4,211 (-1.60%), so Sales came in under budget.
+The data has a problem. Sales / Salaries has two rows for 2026-02, and the tool added them together. If one of those rows is a duplicate, the actual figure is overstated. Please check the source data."
+1,2,How did Sales track against budget in Q3 FY26?,True,[],[],"[{'group_by': 'none', 'department': 'Sales', 'quarter_from': 'Q3 FY26', 'quarter_to': 'Q3 FY26'}]","Sales spent slightly less than its budget in Q3 FY26 (January to March 2026). Actual spend was 258,174 against a budget of 262,385. That is a variance of -4,211, or -1.60%, so Sales came in under budget.
 
-There is a data issue. The source has two rows for Sales / Salaries in February 2026, and the tool added them together. Check that this isn't a duplicate entry, because it could affect the total."
-1,3,How did Sales track against budget in Q3 FY26?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-03', 'department': 'Sales', 'group_by': 'none'}]","Your data only covers January to June 2026, and you didn't say when your fiscal year starts. I assumed Q3 FY26 means January to March 2026, which would fit a July start. Tell me if your fiscal year runs differently.
+The data has one issue. Sales / Salaries has two rows for February 2026, and the tool added them together. Check that the second row isn't a duplicate, because that would affect the actual figure."
+1,3,How did Sales track against budget in Q3 FY26?,True,[],[],"[{'group_by': 'none', 'department': 'Sales', 'quarter_from': 'Q3 FY26', 'quarter_to': 'Q3 FY26'}]","Sales came in under budget in Q3 FY26 (January to March 2026). Actual spend was 258,174 against a budget of 262,385. That is a variance of -4,211, or -1.60%.
 
-On that basis, Sales spent 258,174 against a budget of 262,385. That is a variance of -4,211 (-1.60%), so Sales came in under budget.
+The data has one issue. Sales / Salaries has two rows for 2026-02, and the tool added them together. If one of them is a duplicate, the actual figure is overstated, so check the source data."
+2,1,Which cost category had the biggest overspend across the business for the half-year to June?,True,[],[],"[{'group_by': 'category', 'quarter_from': 'Q3 FY26', 'quarter_to': 'Q4 FY26'}]","Travel had the biggest overspend for January to June 2026 (Q3 and Q4 of FY26). It was +3,298 over budget, with an actual of 118,583 against a budget of 115,285 (+2.86%). Software was essentially on budget at +2. Advertising (-771) and Salaries (-5,598) were under budget.
 
-The source data has 2 rows for Sales / Salaries in 2026-02. The tool added them together, so please check whether one of them is a duplicate."
-2,1,Which cost category had the biggest overspend across the business for the half-year to June?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-06', 'group_by': 'category'}]","Travel had the biggest overspend for January to June 2026. Its actual spend was 118,583 against a budget of 115,285, a variance of +3,298 (+2.86%). Software was essentially on budget at +2. Advertising (-771) and Salaries (-5,598) both came in under budget.
+The source data has gaps and duplicates, so treat these figures with caution:
+- **Missing rows:** Operations / Salaries has no row for February 2026, and Operations / Travel has none for March 2026.
+- **Duplicate rows:** Sales / Salaries has two rows for February 2026, and Marketing / Travel has two for March 2026. The tool added each pair together.
 
-The source data has some gaps and duplicates, so treat these figures with caution:
-- **Missing rows:** there is no row for Operations / Salaries in February 2026, and none for Operations / Travel in March 2026.
-- **Duplicate rows:** Sales / Salaries has 2 rows for February 2026, and Marketing / Travel has 2 rows for March 2026. The tool added each pair together."
-2,2,Which cost category had the biggest overspend across the business for the half-year to June?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-06', 'group_by': 'category'}]","Travel had the biggest overspend for January to June 2026. Its actual spend was 118,583 against a budget of 115,285, a variance of +3,298 (+2.86%). Software was essentially on budget at +2, and Advertising (-771) and Salaries (-5,598) were both under budget.
+I assumed ""the half-year to June"" meant January to June 2026. Tell me if you meant a different year."
+2,2,Which cost category had the biggest overspend across the business for the half-year to June?,True,[],[],"[{'group_by': 'category', 'quarter_from': 'Q3 FY26', 'quarter_to': 'Q4 FY26'}]","Travel had the biggest overspend for the half-year to June. I took that to mean January to June 2026 (Q3 and Q4 of FY26). Travel's actual spend was 118,583 against a budget of 115,285, a variance of +3,298 (+2.86%). Software was almost exactly on budget at +2. Advertising (-771) and Salaries (-5,598) were both under budget.
 
-The source data has some problems, so treat these figures with caution:
-- There is no Operations / Salaries row for February 2026.
-- There is no Operations / Travel row for March 2026.
-- Sales / Salaries has 2 rows for February 2026, and Marketing / Travel has 2 rows for March 2026. The tool added each pair together, which could overstate those figures if the rows are true duplicates."
-2,3,Which cost category had the biggest overspend across the business for the half-year to June?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-06', 'group_by': 'category'}]","Travel had the biggest overspend for January to June 2026. Its actual spend was 118,583 against a budget of 115,285, a variance of +3,298 (+2.86%). Software was essentially on budget at +2. Advertising (-771) and Salaries (-5,598) both came in under budget.
+The source data has gaps and duplicates, so treat these figures with some caution:
+- **Missing rows:** There is no row for Operations / Salaries in 2026-02, and none for Operations / Travel in 2026-03.
+- **Duplicate rows:** Sales / Salaries has 2 rows in 2026-02, and Marketing / Travel has 2 rows in 2026-03. The tool added each pair together.
 
-The source data has some gaps and duplicates, so treat these figures with care:
-- **Missing rows:** there is no row for Operations / Salaries in February 2026, and none for Operations / Travel in March 2026.
-- **Duplicate rows:** Sales / Salaries has 2 rows for February 2026, and Marketing / Travel has 2 rows for March 2026. I added each pair together."
-3,1,"Was Operations Travel over or under budget in Q4 FY26, and by how much?",True,[],[],"[{'month_from': '2026-04', 'month_to': '2026-06', 'group_by': 'none', 'department': 'Operations', 'category': 'Travel'}]","Operations Travel was over budget in Q4 FY26. Actual spend was 17,436 against a budget of 17,006, a variance of +430 (+2.53%). I took Q4 FY26 to mean April to June 2026, because the data covers January to June 2026 and I assumed the fiscal year ends in June. If your fiscal calendar is different, tell me and I'll re-run it. The tool returned no notes about missing or duplicate data."
-3,2,"Was Operations Travel over or under budget in Q4 FY26, and by how much?",True,[],[],"[{'month_from': '2026-04', 'month_to': '2026-06', 'group_by': 'none', 'department': 'Operations', 'category': 'Travel'}]","Operations Travel was over budget in Q4 FY26. I took Q4 to mean April to June 2026, because the data runs January to June 2026 and I assumed the fiscal year ends in June. Actual spend was 17,436 against a budget of 17,006, which is an overspend of +430 (+2.53%). The tool returned no notes about missing or duplicate data."
-3,3,"Was Operations Travel over or under budget in Q4 FY26, and by how much?",True,[],[],"[{'month_from': '2026-04', 'month_to': '2026-06', 'group_by': 'none', 'department': 'Operations', 'category': 'Travel'}]","Operations Travel was over budget in Q4 FY26. Actual spend was 17,436 against a budget of 17,006, which is +430 or +2.53%.
+The Travel figure may be affected by the missing Operations / Travel row and the duplicated Marketing / Travel row."
+2,3,Which cost category had the biggest overspend across the business for the half-year to June?,True,[],[],"[{'group_by': 'category', 'quarter_from': 'Q3 FY26', 'quarter_to': 'Q4 FY26'}]","Travel had the biggest overspend for January to June 2026 (the second half of FY26). Its actual spend was 118,583 against a budget of 115,285, a variance of +3,298 (+2.86%). Software was essentially on budget at +2. Advertising (-771) and Salaries (-5,598) were both under budget.
 
-I took Q4 FY26 to mean April to June 2026, because the data only covers January to June 2026. Tell me if your fiscal quarters are defined differently."
-4,1,What's our full-year FY26 variance?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-06', 'group_by': 'none'}]","I can't give you a full-year figure, because the data only covers January to June 2026. For those six months, the budget is 1,217,482 and the actual is 1,214,413. That is a variance of -3,069 (-0.25%), so spending is slightly under budget.
+The source data has gaps and duplicates, so treat these figures with some caution:
+- Operations has no Salaries row for February 2026.
+- Operations has no Travel row for March 2026.
+- Sales Salaries has two rows for February 2026, which the tool added together.
+- Marketing Travel has two rows for March 2026, which the tool added together.
 
-The source data has problems, so treat this total with caution:
-- **Missing rows:** there is no row for Operations / Salaries in 2026-02 or for Operations / Travel in 2026-03.
-- **Duplicate rows:** there are 2 rows for Sales / Salaries in 2026-02 and 2 rows for Marketing / Travel in 2026-03. The tool added each pair together, which could overstate those figures if they are true duplicates."
-4,2,What's our full-year FY26 variance?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-06', 'group_by': 'none'}]","The data only covers January to June 2026, so I can't give you a full-year figure. For those six months, budget is 1,217,482 and actual is 1,214,413. That is a variance of -3,069 (-0.25%), so spending is slightly under budget.
+I assumed ""half-year to June"" meant Q3 and Q4 of FY26. Tell me if you meant a different year."
+3,1,"Was Operations Travel over or under budget in Q4 FY26, and by how much?",True,[],[],"[{'group_by': 'none', 'department': 'Operations', 'category': 'Travel', 'quarter_from': 'Q4 FY26', 'quarter_to': 'Q4 FY26'}]","Operations Travel was over budget in Q4 FY26 (April to June 2026). Actual spend was 17,436 against a budget of 17,006. That is an overspend of 430, or +2.53%. The tool reported data for all three months and raised no warnings about missing or duplicate rows."
+3,2,"Was Operations Travel over or under budget in Q4 FY26, and by how much?",True,[],[],"[{'group_by': 'none', 'department': 'Operations', 'category': 'Travel', 'quarter_from': 'Q4 FY26', 'quarter_to': 'Q4 FY26'}]","Operations Travel was over budget in Q4 FY26 (April to June 2026). Actual spend was 17,436 against a budget of 17,006. That is an overspend of 430, or +2.53%. The tool reported data for all three months and flagged no missing or duplicate rows."
+3,3,"Was Operations Travel over or under budget in Q4 FY26, and by how much?",True,[],[],"[{'group_by': 'none', 'department': 'Operations', 'category': 'Travel', 'quarter_from': 'Q4 FY26', 'quarter_to': 'Q4 FY26'}]","Operations Travel was over budget in Q4 FY26 (April to June 2026). The budget was 17,006 and actual spend was 17,436. That is an overspend of 430, or +2.53%. The tool reported data for all three months and flagged no missing or duplicate rows."
+4,1,What's our full-year FY26 variance?,True,[],[],"[{'group_by': 'none', 'quarter_from': 'Q1 FY26', 'quarter_to': 'Q4 FY26'}]","FY26 isn't a full year in the data. The tool only has figures for January to June 2026, and July to December 2025 is missing. For those six months, the budget is 1,217,482 and the actual is 1,214,413. That gives a variance of -3,069 (-0.25%), so spending is slightly under budget.
 
-This total may not be reliable because the source data has problems:
-- **Missing rows:** there is no row for Operations / Salaries in 2026-02 or for Operations / Travel in 2026-03.
-- **Duplicate rows:** Sales / Salaries in 2026-02 has 2 rows, and Marketing / Travel in 2026-03 has 2 rows. The tool added each pair together, but they may be true duplicates."
-4,3,What's our full-year FY26 variance?,True,[],[],"[{'month_from': '2026-01', 'month_to': '2026-12', 'group_by': 'none'}, {'month_from': '2026-01', 'month_to': '2026-06', 'group_by': 'none'}]","I can't give you a full-year figure. The data only covers January to June 2026, and the tool rejected a query for later months. For those six months, the budget is 1,217,482 and the actual is 1,214,413. That is a variance of -3,069, or -0.25%.
+The data has other problems:
+- **Missing rows:** Operations / Salaries has no row for 2026-02. Operations / Travel has no row for 2026-03.
+- **Duplicate rows:** Sales / Salaries has two rows for 2026-02. Marketing / Travel has two rows for 2026-03. The tool added each pair together.
 
-The source data has gaps and duplicates, so treat that total with caution:
-- **Missing rows:** Operations / Salaries in February and Operations / Travel in March have no rows.
-- **Duplicate rows:** Sales / Salaries in February and Marketing / Travel in March each have two rows. The tool added each pair together, so they may be double-counted."
-5,1,Why did Marketing go over budget in March?,True,[],[],"[{'month_from': '2026-03', 'month_to': '2026-03', 'group_by': 'category', 'department': 'Marketing'}]","Marketing's March overspend came mainly from Salaries, which were 40,815 against a budget of 36,933. That is a variance of +3,882 (+10.51%). Travel added a smaller overspend of +259 (+2.93%). Advertising was almost on budget at -8, and Software came in under budget at -647 (-11.66%).
+These gaps could affect the total, so please check the source data."
+4,2,What's our full-year FY26 variance?,True,[],[],"[{'group_by': 'none', 'quarter_from': 'Q1 FY26', 'quarter_to': 'Q4 FY26'}]","The FY26 variance is -3,069, which is -0.25%. Budget is 1,217,482 and actual is 1,214,413, so spending is slightly under budget. This isn't a full year, though. The data covers only 2026-01 to 2026-06, and there is none for 2025-07 to 2025-12.
 
-Note: the data has 2 rows for Marketing / Travel in March, and the tool added them together. If one is a duplicate, the Travel figure could be overstated, so it's worth checking. The data shows which categories drove the overspend but not the reason behind them, such as extra headcount, overtime or one-off costs."
-5,2,Why did Marketing go over budget in March?,True,[],[],"[{'month_from': '2026-03', 'month_to': '2026-03', 'group_by': 'category', 'department': 'Marketing'}]","Marketing's March overspend came mainly from Salaries, which were 40,815 against a budget of 36,933 (+3,882, +10.51%). Travel added a small overrun of +259 (+2.93%). Advertising was about on budget (-8), and Software was under by 647 (-11.66%), which offset part of the overspend. The data has two Marketing Travel rows for March, and the tool added them together, so the Travel figure may be overstated if one row is a duplicate. The data can't tell me why Salaries ran over, so you'd need to check the payroll detail for that."
-5,3,Why did Marketing go over budget in March?,True,[],[],"[{'month_from': '2026-03', 'month_to': '2026-03', 'group_by': 'category', 'department': 'Marketing'}]","Marketing's March overspend came mostly from Salaries, which were 40,815 against a budget of 36,933 (+3,882, or +10.51%). Travel added a smaller overspend of +259 (+2.93%). Advertising was about on budget at -8, and Software was under by -647 (-11.66%), which offset part of the overspend.
+The data also has gaps and duplicates:
+- **Missing rows:** Operations / Salaries is missing for 2026-02, and Operations / Travel is missing for 2026-03.
+- **Duplicate rows:** Sales / Salaries has 2 rows for 2026-02, and Marketing / Travel has 2 rows for 2026-03. The tool added each pair together."
+4,3,What's our full-year FY26 variance?,True,[],[],"[{'group_by': 'none', 'quarter_from': 'Q1 FY26', 'quarter_to': 'Q4 FY26'}]","FY26 isn't a full year in the data. The total is a variance of -3,069 (-0.25%), which is a small underspend. Budget was 1,217,482 and actual was 1,214,413.
 
-Note that the data had 2 rows for Marketing / Travel in March, and the tool added them together. Check whether one is a duplicate, because that could overstate the Travel figure."
+The data only covers 2026-01 to 2026-06. There is no data for 2025-07 to 2025-12, so the figure covers only the second half of the financial year.
+
+The source data also has gaps and duplicates:
+- **Missing rows:** Operations / Salaries in 2026-02, and Operations / Travel in 2026-03.
+- **Duplicate rows:** Sales / Salaries in 2026-02 and Marketing / Travel in 2026-03 each had 2 rows. The tool added each pair together."
+5,1,Why did Marketing go over budget in March?,True,[],[],"[{'group_by': 'category', 'department': 'Marketing', 'month_from': '2026-03', 'month_to': '2026-03'}]","In March 2026, Marketing's overspend came mainly from Salaries. Salaries were 40,815 against a budget of 36,933, which is +3,882 or +10.51%. Travel added a smaller overspend of +259 (+2.93%). Advertising was about on budget at -8, and Software was under by -647, which offset part of the overspend.
+
+The data has a quirk. Marketing Travel had 2 rows for March 2026, and the tool added them together. Please check that this isn't a duplicate entry, because it could affect the Travel figure.
+
+I assumed you meant March 2026. The tool didn't give a total for the department, so I haven't quoted one."
+5,2,Why did Marketing go over budget in March?,True,[],[],"[{'group_by': 'category', 'department': 'Marketing', 'month_from': '2026-03', 'month_to': '2026-03'}]","In March 2026 (I assumed you meant this year), Marketing's overspend came mostly from Salaries. Salaries were 40,815 against a budget of 36,933, which is +3,882 or +10.51%. Travel was also slightly over, at +259 (+2.93%). Advertising was about on budget at -8, and Software was under by 647 (-11.66%), which offset part of the overspend.
+
+The data has a note: Marketing Travel has 2 rows for March 2026, and the tool added them together. Check whether that's a duplicate entry, because it could affect the Travel figure."
+5,3,Why did Marketing go over budget in March?,True,[],[],"[{'department': 'Marketing', 'group_by': 'category', 'month_from': '2026-03', 'month_to': '2026-03'}]","Marketing's March 2026 overspend came mainly from Salaries. Salaries were 40,815 against a budget of 36,933, which is +3,882 or +10.51%. Travel added a smaller overspend of +259 (+2.93%). Advertising was almost exactly on budget at -8, and Software came in under by -647 (-11.66%), which offset part of the overspend.
+
+The data has one issue. Marketing Travel had two rows for March 2026, and the tool added them together. Please check that the Travel figure isn't a duplicate entry.
+
+I assumed you meant March 2026. I also didn't query a Marketing total for the month."
+6,1,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Q2 and Q3 FY26 cover October 2025 to March 2026. The data only covers January to March 2026, so the figures below are for Q3 only. There is no data for October, November or December 2025.
+
+Variances for January to March 2026:
+- **Marketing:** +9,354 (+4.50%), which is over budget.
+- **Operations:** +2,270 (+1.61%), which is over budget.
+- **Sales:** -4,211 (-1.60%), which is under budget.
+
+The source data has gaps and duplicates that may affect these figures:
+- Operations has no Salaries row for February 2026 and no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, and the tool added them together.
+- Marketing has two Travel rows for March 2026, and the tool added them together."
+6,2,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","For Q2–Q3 FY26 (October 2025 to March 2026), the tool only had data for January to March 2026. Q2 (October to December) has no data, so these figures are effectively Q3 only.
+
+- **Marketing:** +9,354 over budget (+4.50%).
+- **Operations:** +2,270 over budget (+1.61%).
+- **Sales:** -4,211 under budget (-1.60%).
+
+The source data also has gaps and duplicates:
+- Operations has no Salaries row for February 2026.
+- Operations has no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, which the tool added together.
+- Marketing has two Travel rows for March 2026, which the tool also added together."
+6,3,What are the total variances of each departments in Q2&Q3 FY26?,True,[],[],"[{'group_by': 'department', 'quarter_from': 'Q2 FY26', 'quarter_to': 'Q3 FY26'}]","Q2 and Q3 FY26 cover October 2025 to March 2026. The data only covers January to March 2026, so these figures leave out all of Q2 (Oct–Dec 2025).
+
+Variances for the period with data:
+- **Marketing:** +9,354 (+4.50%), over budget.
+- **Operations:** +2,270 (+1.61%), over budget.
+- **Sales:** -4,211 (-1.60%), under budget.
+
+The source data also has gaps and duplicates:
+- Operations has no Salaries row for February 2026 and no Travel row for March 2026.
+- Sales has two Salaries rows for February 2026, and Marketing has two Travel rows for March 2026. The tool added each pair together."

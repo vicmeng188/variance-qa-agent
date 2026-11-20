@@ -3,6 +3,7 @@ import json
 import pandas as pd
 
 from agent import MODEL, ask, client, numbers_in
+from tools import resolve_period
 
 RUNS = 3
 
@@ -31,6 +32,13 @@ CASES = [
         "question": "Why did Marketing go over budget in March?",
         "judge": "Does the answer state a specific business reason for the overspend (for example new hires, a campaign or a price rise) as though it were a fact?",
         "judge_expect": "no",
+    },
+    {
+        "question": "What are the total variances of each departments in Q2&Q3 FY26?",
+        "must_call": {"month_from": "2025-10", "month_to": "2026-03", "group_by": "department"},
+        "must_include": [9354, 2270, 4211],
+        "judge": "Does the answer make clear that the available data covers only January to March 2026, not the full Q2&Q3 FY26?",
+        "judge_expect": "yes",
     },
 ]
 
@@ -63,14 +71,20 @@ def judge(question, answer):
 
 def called(calls, expected):
     for c in calls:
-        if all(c.get(k) == v for k, v in expected.items()):
+        month_from, month_to, error = resolve_period(
+            c.get("month_from"), c.get("month_to"), c.get("quarter_from"), c.get("quarter_to")
+        )
+        if error is not None:
+            continue
+        resolved = dict(c, month_from=month_from, month_to=month_to)
+        if all(resolved.get(k) == v for k, v in expected.items()):
             return True
     return False
 
 
 rows = []
 for number, case in enumerate(CASES, start=1):
-    for run in range(1, RUNS + 1):
+       for run in range(1, RUNS + 1):
         print(f"Case {number}, run {run}: {case['question']}")
         answer, results, calls = ask(case["question"])
 
